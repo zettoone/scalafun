@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaSbtSettings">
+    <option name="linkedExternalProjectsSettings">
+      <SbtProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="F:\Codebase\Coursera_Scala_201404\example" />
+            <option value="F:\Codebase\Coursera_Scala_201404\example\project" />
+            <option value="F:\Codebase\Coursera_Scala_201404\example\submission" />
+            <option value="F:\Codebase\Coursera_Scala_201404\example\submission\project" />
+          </set>
+        </option>
+      </SbtProjectSettings>
+    </option>
+  </component>
+</project>
+
