@@ -27,7 +27,7 @@ object Main {
    */
   def balance(chars: List[Char]): Boolean = {
     def balanceWithState(chars: List[Char], numUnmatched: Int, isOpen: Boolean): Boolean = {
-      if (chars.isEmpty) {
+      if (!chars.isEmpty) {
         if (chars.head == '(') {
           balanceWithState(chars.tail, numUnmatched + 1, true)
         } else if (chars.head == ')') {
