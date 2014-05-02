@@ -25,7 +25,26 @@ object Main {
   /**
    * Exercise 2
    */
-  def balance(chars: List[Char]): Boolean = ???
+  def balance(chars: List[Char]): Boolean = {
+    def balanceWithState(chars: List[Char], numLefts: Int): Boolean = {
+      if (chars.isEmpty) {
+        if (numLefts > 0)
+          return false;
+        else
+          return true;
+      } else {
+        if (chars.head.equals("(")) {
+          return balanceWithState(chars.tail, numLefts + 1)
+        } else if (chars.head.equals(")")) {
+          return balanceWithState(chars.tail, numLefts - 1)
+        } else {
+          return balanceWithState(chars.tail, numLefts)
+        }
+      }
+    }
+
+    balanceWithState(chars, 0)
+  }
 
   /**
    * Exercise 3

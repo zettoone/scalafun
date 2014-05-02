@@ -1,6 +1,12 @@
 *.class
 *.log
 
+# IDEAJ
+*.iml
+*.ipr
+*.iws
+.idea/
+
 # sbt specific
 dist/*
 target/
@@ -42,7 +48,7 @@ local.properties
 *.launch
 
 # CDT-specific
-.cproject
+.cproject#
 
 # PDT-specific
 .buildpath

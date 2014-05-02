@@ -4,6 +4,14 @@
     <option name="linkedExternalProjectsSettings">
       <SbtProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="F:\Codebase\Coursera_Scala_201404\recfun" />
+            <option value="F:\Codebase\Coursera_Scala_201404\recfun\project" />
+            <option value="F:\Codebase\Coursera_Scala_201404\recfun\submission" />
+            <option value="F:\Codebase\Coursera_Scala_201404\recfun\submission\project" />
+          </set>
+        </option>
       </SbtProjectSettings>
     </option>
   </component>
