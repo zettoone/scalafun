@@ -29,16 +29,16 @@ object Main {
     def balanceWithState(chars: List[Char], numLefts: Int): Boolean = {
       if (chars.isEmpty) {
         if (numLefts > 0)
-          return false;
+          false;
         else
-          return true;
+          true;
       } else {
         if (chars.head.equals("(")) {
-          return balanceWithState(chars.tail, numLefts + 1)
+          balanceWithState(chars.tail, numLefts + 1)
         } else if (chars.head.equals(")")) {
-          return balanceWithState(chars.tail, numLefts - 1)
+          balanceWithState(chars.tail, numLefts - 1)
         } else {
-          return balanceWithState(chars.tail, numLefts)
+          balanceWithState(chars.tail, numLefts)
         }
       }
     }
