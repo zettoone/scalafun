@@ -26,24 +26,25 @@ object Main {
    * Exercise 2
    */
   def balance(chars: List[Char]): Boolean = {
-    def balanceWithState(chars: List[Char], numLefts: Int): Boolean = {
+    def balanceWithState(chars: List[Char], numUnmatched: Int, isOpen: Boolean): Boolean = {
       if (chars.isEmpty) {
-        if (numLefts > 0)
-          false;
-        else
-          true;
-      } else {
-        if (chars.head.equals("(")) {
-          balanceWithState(chars.tail, numLefts + 1)
-        } else if (chars.head.equals(")")) {
-          balanceWithState(chars.tail, numLefts - 1)
+        if (chars.head == '(') {
+          balanceWithState(chars.tail, numUnmatched + 1, true)
+        } else if (chars.head == ')') {
+          if (isOpen) {
+            balanceWithState(chars.tail, numUnmatched - 1, numUnmatched > 1)
+          } else {
+            false
+          }
         } else {
-          balanceWithState(chars.tail, numLefts)
+          balanceWithState(chars.tail, numUnmatched, isOpen)
         }
+      } else {
+        !isOpen && numUnmatched == 0
       }
     }
 
-    balanceWithState(chars, 0)
+    balanceWithState(chars, 0, false)
   }
 
   /**
@@ -57,7 +58,7 @@ object Main {
     } else if (money >=1 && coins.isEmpty) {
       0
     } else {
-      countChange(money, coins.tail) + countChange(money - coins.head, coins.tail)
+      countChange(money, coins.tail) + countChange(money - coins.head, coins)
     }
   }
 }
