@@ -65,23 +65,28 @@ object FunSets {
    */
   def forall(s: Set, p: Int => Boolean): Boolean = {
     def iter(a: Int): Boolean = {
-      if (???) ???
-      else if (???) ???
-      else iter(???)
+      if (Math.abs(a) > 1000) true
+      else if (contains(s, a) && !p(a)) false
+      else iter(a + 1)
     }
-    iter(???)
+    iter(-1000)
   }
 
   /**
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-  def exists(s: Set, p: Int => Boolean): Boolean = ???
+  def exists(s: Set, p: Int => Boolean): Boolean = {
+    val inv_p = (x: Int) => !p(x)
+    !forall(s, inv_p)
+  }
 
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
-  def map(s: Set, f: Int => Int): Set = ???
+  def map(s: Set, f: Int => Int): Set = {
+    (x: Int) => exists(s, (y: Int) => f(y) == x)
+  }
 
   /**
    * Displays the contents of a set

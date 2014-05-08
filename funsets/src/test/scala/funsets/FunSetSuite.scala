@@ -155,4 +155,42 @@ class FunSetSuite extends FunSuite {
     }
   }
 
+  trait TestSet2 {
+    val elem1 = singletonSet(-500)
+    val elem2 = singletonSet(0)
+    val elem3 = singletonSet(998)
+    val elem4 = singletonSet(999)
+
+    val even_union = union(elem1, union(elem2, elem3));
+    val odd_union = union(even_union, elem4);
+  }
+
+  test("forall elements that satisfy the predicate") {
+    new TestSet2 {
+      assert(forall(even_union, (x: Int) => x % 2 == 0), "All elements are even")
+      assert(!forall(odd_union, (x: Int) => x % 2 == 0), "Not all elements are even")
+    }
+  }
+
+  test("there exists element that satisfies the predicate"){
+    new TestSet2 {
+      assert(!exists(even_union, (x: Int) => x % 2 != 0),
+        "There doesn't exist an odd number in the even set")
+      assert(exists(odd_union, (x: Int) => x % 2 != 0),
+        "There exists an odd number in the odd set")
+    }
+  }
+
+  test("map a set to another one by a given function") {
+    new TestSets {
+      val u = union(s1, union(s2, s3))
+      var m = map(u, (x: Int) => x + 1)
+      assert(!contains(m, 1), "(2, 3, 4) doesn't contain 1")
+      assert(contains(m, 2), "(2, 3, 4) contains 2")
+      assert(contains(m, 3), "(2, 3, 4) contains 3")
+      assert(contains(m, 4), "(2, 3, 4) contains 4")
+
+    }
+  }
+
 }
