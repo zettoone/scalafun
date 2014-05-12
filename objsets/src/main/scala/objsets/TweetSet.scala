@@ -9,7 +9,7 @@ import TweetReader._
 class Tweet(val user: String, val text: String, val retweets: Int) {
   override def toString: String =
     "User: " + user + "\n" +
-    "Text: " + text + " [" + retweets + "]"
+      "Text: " + text + " [" + retweets + "]"
 }
 
 /**
@@ -57,7 +57,7 @@ abstract class TweetSet {
    * Question: Should we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
-   def union(that: TweetSet): TweetSet = ???
+  def union(that: TweetSet): TweetSet
 
   /**
    * Returns the tweet from this set which has the greatest retweet count.
@@ -68,7 +68,8 @@ abstract class TweetSet {
    * Question: Should we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
-  def mostRetweeted: Tweet = ???
+  def mostRetweeted: Tweet
+  def mostRetweetedAcc(currMax: Tweet): Tweet
 
   /**
    * Returns a list containing all tweets of this set, sorted by retweet count
@@ -114,6 +115,10 @@ class Empty extends TweetSet {
 
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet = acc
 
+  def union(that: TweetSet) = that
+
+  def mostRetweeted: Tweet = throw new NoSuchElementException
+  def mostRetweetedAcc(currMax: Tweet) = currMax
 
   /**
    * The following methods are already implemented
@@ -138,6 +143,21 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     }
   }
 
+  def union(that: TweetSet) = {
+    right.union(left.union(that.incl(elem)))
+  }
+
+  def mostRetweeted: Tweet = {
+    mostRetweetedAcc(elem)
+  }
+
+  def mostRetweetedAcc(currMax: Tweet) = {
+    if (elem.retweets > currMax.retweets) {
+      right.mostRetweetedAcc(left.mostRetweetedAcc(elem))
+    } else {
+      right.mostRetweetedAcc(left.mostRetweetedAcc(currMax))
+    }
+  }
 
   /**
    * The following methods are already implemented
@@ -168,8 +188,11 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
 
 trait TweetList {
   def head: Tweet
+
   def tail: TweetList
+
   def isEmpty: Boolean
+
   def foreach(f: Tweet => Unit): Unit =
     if (!isEmpty) {
       f(head)
@@ -179,7 +202,9 @@ trait TweetList {
 
 object Nil extends TweetList {
   def head = throw new java.util.NoSuchElementException("head of EmptyList")
+
   def tail = throw new java.util.NoSuchElementException("tail of EmptyList")
+
   def isEmpty = true
 }
 
