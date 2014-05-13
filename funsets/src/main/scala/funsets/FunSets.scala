@@ -77,8 +77,7 @@ object FunSets {
    * that satisfies `p`.
    */
   def exists(s: Set, p: Int => Boolean): Boolean = {
-    val inv_p = (x: Int) => !p(x)
-    !forall(s, inv_p)
+    !forall(s, (x: Int) => !p(x))
   }
 
   /**
