@@ -30,6 +30,13 @@ class HuffmanSuite extends FunSuite {
     assert(string2Chars("hello, world") === List('h', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd'))
   }
 
+  test("times of a char list") {
+    new TestTrees {
+      val res = times(List('a','b','d'))
+      assert(res == List(('a', 1), ('b', 1), ('d', 1)), "Result" + res.toString())
+    }
+  }
+
   test("makeOrderedLeafList for some frequency table") {
     assert(makeOrderedLeafList(List(('t', 2), ('e', 1), ('x', 3))) === List(Leaf('e',1), Leaf('t',2), Leaf('x',3)))
   }
