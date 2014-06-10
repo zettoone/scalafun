@@ -306,8 +306,8 @@ object Main extends App {
   // Print the decoded french
   //Huffman.decodedSecret foreach print
 
-  val t1 = Huffman.Fork(Huffman.Leaf('a', 2), Huffman.Leaf('b', 3), List('a', 'b'), 5)
-  Huffman.decode(t1, Huffman.encode(t1)("abbaabbaba".toList)) foreach print
+  // val t1 = Huffman.Fork(Huffman.Leaf('a', 2), Huffman.Leaf('b', 3), List('a', 'b'), 5)
+  // Huffman.decode(t1, Huffman.encode(t1)("abbaabbaba".toList)) foreach print
   // Huffman.decode(t1, Huffman.quickEncode(t1)("abbaabbaba".toList)) foreach println
 
   //val x = Huffman.combine(List(Huffman.Leaf('e', 1), Huffman.Leaf('t', 2), Huffman.Leaf('x', 4)))
